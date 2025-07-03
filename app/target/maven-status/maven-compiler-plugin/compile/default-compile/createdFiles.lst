@@ -2,6 +2,7 @@ com/swissre/app/util/Constants.class
 com/swissre/app/exceptions/EmptyCsvFileException.class
 com/swissre/app/service/readFile/CSVFileReader.class
 com/swissre/app/dao/Employee.class
+com/swissre/app/dao/Employee$Builder.class
 com/swissre/app/service/validateFile/CsvFileValidator.class
 com/swissre/app/service/factory/FileReaderFactory.class
 com/swissre/app/exceptions/FileReadException.class

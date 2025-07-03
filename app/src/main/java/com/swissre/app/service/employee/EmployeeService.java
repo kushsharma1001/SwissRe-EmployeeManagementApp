@@ -20,7 +20,18 @@ public class EmployeeService {
             String lastName = employeeInfo[2];
             double salary = Double.parseDouble(employeeInfo[3]);
             Integer managerId = employeeInfo.length > 4 && !employeeInfo[4].isEmpty() ? Integer.parseInt(employeeInfo[4]) : null;
-            Employee emp = new Employee(id, firstName, lastName, salary, managerId, new HashSet<>(), false, 0, 0, managerId == null? true: false);
+            Employee emp = Employee.builder()
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .salary(salary)
+                .managerId(managerId)
+                .subordinates(new HashSet<>())
+                .isOverpaid(false)
+                .differentialAmount(0)
+                .empToCeoDepth(0)
+                .isCeo(managerId == null)
+                .build();
             employeeMap.put(id, emp);
             //Update the subordinate list of the manager (if manager exists already as an employee) as new employee has been assigned.
             if(employeeMap.containsKey(managerId)){

@@ -14,17 +14,78 @@ public class Employee {
     private int empToCeoDepth;
     private boolean isCeo;
 
-    public Employee(int id, String firstName, String lastName, double salary, Integer managerId, Set<Employee> subordinates, boolean isOverpaid, double differentialAmount, int empToCeoDepth, boolean isCeo) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
-        this.managerId = managerId;
-        this.subordinates = subordinates;
-        this.isOverpaid = isOverpaid;
-        this.differentialAmount = differentialAmount;
-        this.empToCeoDepth = empToCeoDepth;
-        this.isCeo = isCeo;
+    private Employee(Builder builder) {
+        this.id = builder.id;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.salary = builder.salary;
+        this.managerId = builder.managerId;
+        this.subordinates = builder.subordinates;
+        this.isOverpaid = builder.isOverpaid;
+        this.differentialAmount = builder.differentialAmount;
+        this.empToCeoDepth = builder.empToCeoDepth;
+        this.isCeo = builder.isCeo;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private int id;
+        private String firstName;
+        private String lastName;
+        private double salary;
+        private Integer managerId;
+        private Set<Employee> subordinates;
+        private boolean isOverpaid;
+        private double differentialAmount;
+        private int empToCeoDepth;
+        private boolean isCeo;
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+        public Builder salary(double salary) {
+            this.salary = salary;
+            return this;
+        }
+        public Builder managerId(Integer managerId) {
+            this.managerId = managerId;
+            return this;
+        }
+        public Builder subordinates(Set<Employee> subordinates) {
+            this.subordinates = subordinates;
+            return this;
+        }
+        public Builder isOverpaid(boolean isOverpaid) {
+            this.isOverpaid = isOverpaid;
+            return this;
+        }
+        public Builder differentialAmount(double differentialAmount) {
+            this.differentialAmount = differentialAmount;
+            return this;
+        }
+        public Builder empToCeoDepth(int empToCeoDepth) {
+            this.empToCeoDepth = empToCeoDepth;
+            return this;
+        }
+        public Builder isCeo(boolean isCeo) {
+            this.isCeo = isCeo;
+            return this;
+        }
+        public Employee build() {
+            return new Employee(this);
+        }
     }
 
     public void setId(int id) {
