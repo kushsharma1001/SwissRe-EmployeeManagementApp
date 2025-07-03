@@ -1,6 +1,5 @@
 package com.swissre.app.service.readFile;
 
-import com.swissre.app.EmployeeManagementApplication;
 import com.swissre.app.exceptions.FileReadException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +11,7 @@ import static com.swissre.app.util.Constants.CSV_FILE_READ_ERROR;
 public class CSVFileReader implements IFileReader {
     @Override
     public List<String> read(String fileName) {
-        try (InputStream input = EmployeeManagementApplication.class.getClassLoader().getResourceAsStream(fileName)) {
+        try (InputStream input = CSVFileReader.class.getClassLoader().getResourceAsStream(fileName)) {
             if (input == null) {
                 throw new FileNotFoundException(fileName + " doesnt exist at src/main/resources/ directory.");
             }
