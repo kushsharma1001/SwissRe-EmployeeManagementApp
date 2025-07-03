@@ -1,6 +1,9 @@
 package com.swissre.app.service.employee;
 
 import com.swissre.app.dao.Employee;
+import com.swissre.app.service.salaryAnalysisStrategy.DefaultSalaryAnalysisStrategy;
+import com.swissre.app.service.salaryAnalysisStrategy.SalaryAnalysisStrategy;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class EmployeeService {
     private static final Logger logger = Logger.getLogger(EmployeeService.class.getName());
+    private SalaryAnalysisStrategy salaryAnalysisStrategy = new DefaultSalaryAnalysisStrategy();
+
     public void addEmployeesFromCsvToMap(List<String> employeeRecords, Map<Integer, Employee> employeeMap){
         for (String empRecord : employeeRecords) {
             String[] employeeInfo = empRecord.split(",");
@@ -51,24 +56,12 @@ public class EmployeeService {
         }
     }
 
-    public void analyzeUnderPaidOrOverPaidEmployees(Map<Integer, Employee> employeeMap) {
-        for (Employee emp : employeeMap.values()) {
-            if (!emp.getSubordinates().isEmpty()) {
-                double avg = emp.getSubordinates().parallelStream().mapToDouble(Employee::getSalary).average().orElse(0);
-                // TO DO: Extract to new class to calculate max and min
-                double min = avg + (avg*0.2);
-                double max = avg + (avg*0.5);
+    public void setSalaryAnalysisStrategy(SalaryAnalysisStrategy strategy) {
+        this.salaryAnalysisStrategy = strategy;
+    }
 
-                if (emp.getSalary() < min) {
-                    // Set underpaid difference amount by which underpaid
-                    emp.setDifferentialAmount(min - emp.getSalary());
-                } else if (emp.getSalary() > max) {
-                    // Set overpaid to true and set difference amount by which overpaid
-                    emp.setOverpaid(true);
-                    emp.setDifferentialAmount(emp.getSalary() - max);
-                }
-            }
-        }
+    public void analyzeUnderPaidOrOverPaidEmployees(Map<Integer, Employee> employeeMap) {
+        salaryAnalysisStrategy.analyze(employeeMap);
     }
 
     public void assignEmployeeToCeoDepth(Map<Integer, Employee> employeeMap) {

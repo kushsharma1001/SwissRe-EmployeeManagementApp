@@ -1,7 +1,4 @@
-/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/validateFile/IFileValidator.java
-/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/validateFile/CsvFileValidator.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/factory/FileReaderFactory.java
-/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/readFile/CSVFileReader.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/exceptions/EmptyCsvFileException.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/employee/EmployeeService.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/exceptions/FileReadException.java
@@ -9,3 +6,8 @@
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/readFile/IFileReader.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/util/Constants.java
 /Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/dao/Employee.java
+/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/validateFile/IFileValidator.java
+/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/validateFile/CsvFileValidator.java
+/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/readFile/CSVFileReader.java
+/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/salaryAnalysisStrategy/DefaultSalaryAnalysisStrategy.java
+/Users/kush.sharma/Downloads/SwissRe-EmployeeManagementApp/app/src/main/java/com/swissre/app/service/salaryAnalysisStrategy/SalaryAnalysisStrategy.java
