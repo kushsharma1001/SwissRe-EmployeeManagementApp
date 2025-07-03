@@ -3,24 +3,26 @@ package com.swissre.app.service;
 import com.swissre.app.EmployeeManagementApplication;
 import com.swissre.app.exceptions.EmptyCsvFileException;
 import com.swissre.app.exceptions.FileReadException;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.swissre.app.util.Constants.CSV_FILE_READ_ERROR;
 
 public class CSVReaderService {
 
     public List<String> read(String fileName) {
-        try {
-            Path filePath = Paths.get(EmployeeManagementApplication.class.getClassLoader().getResource(fileName).toURI());
-            if (!Files.exists(filePath)) {
-               throw new FileNotFoundException(fileName + " doesnt exist at src/main/resources/ directory.");
+        try (InputStream input = EmployeeManagementApplication.class.getClassLoader().getResourceAsStream(fileName)) {
+            if (input == null) {
+                throw new FileNotFoundException(fileName + " doesnt exist at src/main/resources/ directory.");
             }
-            return Files.readAllLines(filePath);
-        }
-        catch (Exception e){
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
+                return reader.lines().collect(Collectors.toList());
+            }
+        } catch (Exception e) {
             throw new FileReadException(CSV_FILE_READ_ERROR, e);
         }
     }
