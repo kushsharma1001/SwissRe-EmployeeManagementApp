@@ -17,7 +17,8 @@ public class CSVFileReader implements IFileReader {
             }
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
-                return reader.lines().collect(Collectors.toList());
+                // Handling ZWNBSP character before returning the csv rows
+                return reader.lines().map(l -> l.replace("\uFEFF", "")).collect(Collectors.toList());
             }
         } catch (Exception e) {
             throw new FileReadException(CSV_FILE_READ_ERROR, e);

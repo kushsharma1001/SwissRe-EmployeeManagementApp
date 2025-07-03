@@ -49,10 +49,10 @@ public class EmployeeService {
                 double max = avg + (avg*0.5);
 
                 if (emp.getSalary() < min) {
-                    // Set underpaid difference amount
+                    // Set underpaid difference amount by which underpaid
                     emp.setDifferentialAmount(min - emp.getSalary());
                 } else if (emp.getSalary() > max) {
-                    // Set overpaid to true and set difference amount
+                    // Set overpaid to true and set difference amount by which overpaid
                     emp.setOverpaid(true);
                     emp.setDifferentialAmount(emp.getSalary() - max);
                 }
@@ -69,11 +69,11 @@ public class EmployeeService {
 
     public void display(Map<Integer, Employee> employeeMap){
         logger.log(Level.INFO,"-- Underpaid Managers --\n");
-        logger.log(Level.INFO, employeeMap.values().stream().filter(emp -> !emp.isOverpaid() && emp.getDifferentialAmount() !=0).collect(Collectors.toList()).toString());
+        logger.log(Level.INFO, employeeMap.values().parallelStream().filter(emp -> !emp.isOverpaid() && emp.getDifferentialAmount() !=0).collect(Collectors.toList()).toString());
         logger.log(Level.INFO,"\n-- Overpaid Managers --");
-        logger.log(Level.INFO, employeeMap.values().stream().filter(emp -> emp.isOverpaid() && emp.getDifferentialAmount() !=0).collect(Collectors.toList()).toString());
+        logger.log(Level.INFO, employeeMap.values().parallelStream().filter(emp -> emp.isOverpaid() && emp.getDifferentialAmount() !=0).collect(Collectors.toList()).toString());
         logger.log(Level.INFO,"\n-- Employees with Deep Reporting Lines --");
-        logger.log(Level.INFO, employeeMap.values().stream().filter(emp -> emp.getEmpToCeoDepth() > 4).collect(Collectors.toList()).toString());
+        logger.log(Level.INFO, employeeMap.values().parallelStream().filter(emp -> emp.getEmpToCeoDepth() > 4).collect(Collectors.toList()).toString());
     }
 
     private int getDepth(Employee emp, Map<Integer, Employee> map) {
@@ -81,6 +81,9 @@ public class EmployeeService {
         while (emp.getManagerId() != null) {
             Integer managerId = emp.getManagerId();
             emp = map.get(managerId);
+            if(emp.isCeo()){
+                return depth;
+            }
             depth++;
         }
         return depth;

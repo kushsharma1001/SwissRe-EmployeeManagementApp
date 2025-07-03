@@ -4,6 +4,7 @@
 2. Only direct reportees are considered subordinates in the hierarchy and not the indirect ones.
 3. For the sake of simplicity, app is written in Core Java SE without any frameworks or annotations involved.
 4. The input csv file has to be put in src/main/resources/ folder with name: employees.csv
+5. The direct subordinates of CEO will have no intermediate managers in between them and the CEO. Hence, Depth is assumed here as 0.
 
 ## How to run the app
 
