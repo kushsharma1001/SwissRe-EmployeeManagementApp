@@ -16,3 +16,9 @@ This app is for Swiss Re Employee Management case study.
 3. Make sure you are inside the directory: SwissRe-EmployeeManagementApp/app
 4. mvn clean package
 5. java -jar target/app-0.0.1-SNAPSHOT.jar
+
+## Design Principles Used
+
+1. Various design patterns like Factory, Builder and Strategy have been used.
+2. Logging has been implemented.
+3. SOLID principles have been implemented like Single Responsibility Principle, Interface Segregation
